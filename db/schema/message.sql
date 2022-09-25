@@ -8,10 +8,6 @@ CREATE TABLE public.message
         FOREIGN KEY(fk_news_id)
         REFERENCES news(news_id)
         ON DELETE CASCADE,
-    CONSTRAINT fk_to_user
-        FOREIGN KEY(send_to)
-        REFERENCES users(user_id)
-        ON DELETE CASCADE,
     CONSTRAINT fk_by_user
         FOREIGN KEY(send_by)
         REFERENCES users(user_id)

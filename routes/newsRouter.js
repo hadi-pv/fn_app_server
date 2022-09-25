@@ -17,8 +17,8 @@ newsRouter.get('/',async(req,res)=>{
         res.status(200).send({
             message:Array.from(
                 result.rows,(row)=>{
-                    const {news_id,author,image_link,headline,info}=row
-                    return {news_id,author,image_link,headline,info}
+                    const {news_id,author,image_link,headline,info,description}=row
+                    return {news_id,author,image_link,headline,info,description}
                 }
             )
         })
@@ -30,10 +30,10 @@ newsRouter.get('/',async(req,res)=>{
 
 newsRouter.post('/',async(req,res)=>{
     const id=uuidv4()
-    const {author,image_link,headline,info}=req.body
+    const {author,image_link,headline,info,description}=req.body
 
-    const queryText='insert into news(news_id,author,image_link,headline,info) values($1,$2,$3,$4,$5);'
-    const queryValues=[id,author,image_link,headline,info]
+    const queryText='insert into news(news_id,author,image_link,headline,info,description) values($1,$2,$3,$4,$5);'
+    const queryValues=[id,author,image_link,headline,info,description]
 
     var client
     try{

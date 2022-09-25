@@ -6,10 +6,10 @@ const {v4:uuidv4}=require('uuid');
 messageRouter=express.Router()
 
 messageRouter.post('/msg',async(req,res)=>{
-    const {send_by,send_to}=req.body
+    const {send_by}=req.body
 
-    const queryText='select news.news_id as news_id,news.author as author,news.headline as headline,news.info as info,news.image_link as image_link from news inner join message on news.news_id=message.fk_news_id and message.send_by=$1 and message.send_to=$2;'
-    const queryValues=[send_by,send_to]
+    const queryText='select news.news_id as news_id,news.author as author,news.headline as headline,news.info as info,news.image_link as image_link,message.send_to as send_to from news inner join message on news.news_id=message.fk_news_id and message.send_by=$1;'
+    const queryValues=[send_by]
 
     try{
         await dbClient.connect()
@@ -23,8 +23,8 @@ messageRouter.post('/msg',async(req,res)=>{
         res.status(200).send({
             message:Array.from(
                 result.rows,(row)=>{
-                    const {news_id,author,image_link,headline,info}=row
-                    return {news_id,author,image_link,headline,info}
+                    const {news_id,author,image_link,headline,info,send_to}=row
+                    return {news_id,author,image_link,headline,info,send_to}
                 }
             )
         })

@@ -5,5 +5,6 @@ CREATE TABLE public.news
     headline text NOT NULL,
     info text,
     author text,
+    description text,
     PRIMARY KEY(news_id)
 );
