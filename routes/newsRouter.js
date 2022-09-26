@@ -26,6 +26,7 @@ newsRouter.get('/',async(req,res)=>{
         console.log(e)
         res.status(500).send()
     }
+    return
 })
 
 newsRouter.post('/',async(req,res)=>{
@@ -55,7 +56,7 @@ newsRouter.post('/',async(req,res)=>{
             client.release()
         }
     }
-
+    return
 })
 
 module.exports=newsRouter

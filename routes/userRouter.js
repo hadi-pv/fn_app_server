@@ -15,11 +15,12 @@ userRouter.post('/signup',async(req,res)=>{
     var client
     try{
         client = await dbClient.connect()
-
+        console.log('userrouter signup')
         await client.query('BEGIN')
         const result = await client.query(queryText,queryValues)
         await client.query('COMMIT')
         res.status(200).send(user_id)
+        
     } catch (e) {
         console.log(e)
         client.query('ROLLBACK', (err) => null)
@@ -28,6 +29,7 @@ userRouter.post('/signup',async(req,res)=>{
         if (client) client.release()
     }
 
+    return
 })
 
 // userRouter.post('/login',async(req,res)=>{

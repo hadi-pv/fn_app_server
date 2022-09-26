@@ -32,6 +32,7 @@ logRouter.post('/',async(req,res)=>{
             client.release()
         }
     }
+    return
 })
 
 logRouter.post('/news',async(req,res)=>{
@@ -62,6 +63,7 @@ logRouter.post('/news',async(req,res)=>{
             message:"Server Error"
         })
     }
+    return
 })
 
 logRouter.post('/user',async(req,res)=>{
@@ -92,6 +94,7 @@ logRouter.post('/user',async(req,res)=>{
             message:"Server Error"
         })
     }
+    return
 })
 
 module.exports=logRouter;

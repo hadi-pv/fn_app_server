@@ -34,6 +34,7 @@ messageRouter.post('/msg',async(req,res)=>{
             message:"Server Error"
         })
     }
+    return
 })
 
 messageRouter.post('/',async(req,res)=>{
@@ -65,6 +66,7 @@ messageRouter.post('/',async(req,res)=>{
             client.release()
         }
     }
+    return
 })
 
 module.exports=messageRouter
